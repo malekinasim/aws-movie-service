@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: movie-service
+  datasource:
+    url: jdbc:postgresql://localhost:5432/movie
+    username: movie_user
+    password: movie_password
+server:
+  port: 7777

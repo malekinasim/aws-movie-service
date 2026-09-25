@@ -16,7 +16,10 @@ import org.springframework.web.client.RestClient;
 import java.util.List;
 
 @Import(TestcontainersConfiguration.class)
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SpringBootTest(
+		webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT,
+		properties = "spring.cloud.aws.secretsmanager.enabled=false"
+)
 class MovieServiceApplicationTests {
     private static final Logger log= LoggerFactory.getLogger(MovieServiceApplicationTests.class);
 
@@ -51,7 +54,7 @@ class MovieServiceApplicationTests {
 	}
 	@Test
 	void moviesByGenre(){
-		var movies=this.getMovies("/movies/ACTION");
+		var movies=this.getMovies("/api/movies/ACTION");
 		Assertions.assertEquals(3,movies.size());
         Assertions.assertTrue(movies.stream().map(MovieDto::genre).allMatch(
 				Genre.ACTION::equals

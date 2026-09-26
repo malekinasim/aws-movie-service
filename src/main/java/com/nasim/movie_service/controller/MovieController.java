@@ -13,7 +13,6 @@ import java.util.List;
 @RequestMapping("/api/movies")
 public class MovieController {
     private final MovieService movieService;
-
     public MovieController(MovieService movieService) {
         this.movieService = movieService;
     }
